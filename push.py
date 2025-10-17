@@ -105,18 +105,18 @@ def push(model: ProtoPNet, train_push_loader: DataLoader, test_loader: DataLoade
                 # change the argmin index from the index among images of the target class to the index in the entire search batch
                 batch_argmin_proto_dist_j[0] = class_to_img_index_dict[target_class][batch_argmin_proto_dist_j[0]] 
 
-            # location of best patch so far 
-            img_index_in_batch, fmap_height_start_index, fmap_width_start_index = batch_argmin_proto_dist_j
-            fmap_height_end_index, fmap_width_end_index = fmap_height_start_index + 1, fmap_width_start_index + 1 
+                # location of best patch so far 
+                img_index_in_batch, fmap_height_start_index, fmap_width_start_index = batch_argmin_proto_dist_j
+                fmap_height_end_index, fmap_width_end_index = fmap_height_start_index + 1, fmap_width_start_index + 1 
 
-            # now grab the specific patch of shape (128, 1, 1) from the batch 
-            batch_min_fmap_patch_j = protoL_input_[img_index_in_batch,
-                                                   :,
-                                                   fmap_height_start_index:fmap_height_end_index,
-                                                   fmap_width_start_index:fmap_width_end_index]
-            # finally update the global minimmizers
-            global_min_proto_dist[j] = batch_min_proto_dist_j
-            global_min_fmap_patches[j] = batch_min_fmap_patch_j 
+                # now grab the specific patch of shape (128, 1, 1) from the batch 
+                batch_min_fmap_patch_j = protoL_input_[img_index_in_batch,
+                                                       :,
+                                                       fmap_height_start_index:fmap_height_end_index,
+                                                       fmap_width_start_index:fmap_width_end_index]
+                # finally update the global minimmizers
+                global_min_proto_dist[j] = batch_min_proto_dist_j
+                global_min_fmap_patches[j] = batch_min_fmap_patch_j 
 
             """
             Everything past this is visualization. Can ignore this if you don't want to worry about implementing visualization. 
