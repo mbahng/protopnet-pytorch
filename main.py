@@ -50,4 +50,4 @@ if __name__ == "__main__":
 
     train.last_only(model) 
     for _ in range(5): 
-        train.train(train_loader, test_loader, last_layer_optimizer) 
+        train.train(model, train_loader, test_loader, last_layer_optimizer) 
